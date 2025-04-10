@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <cstdlib>
 using namespace std;
 
 vector<vector<int>> threeSum(vector<int>& nums) {
@@ -31,7 +32,11 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 }
 
 vector<int> createSet(int numOfElem) {
-    return {}; //FIXME, iterative to create set with a least one soultion, (-a, -b, a+b), hardcode???
+    vector<int> randomSet;
+    for (int i = 0; i < numOfElem; i++) {
+        randomSet.push_back(rand() % 21 - 10);
+    }
+    return randomSet; //FIXME, at least one soultion of (-a, -b, a+b), hardcode???
 }
 
 double timing(vector<int>& nums) {
@@ -43,8 +48,16 @@ double timing(vector<int>& nums) {
 }
 
 int main() {
+    vector<int> set;
 
-    //cout << timing();
+    set = createSet(200);
+    cout << "n = 200  |  time = " << timing(set) << endl;
+    set = createSet(400);
+    cout << "n = 400  |  time = " << timing(set) << endl;
+    set = createSet(800);
+    cout << "n = 800 |  time = " << timing(set) << endl;
+    set = createSet(1600);
+    cout << "n = 1600 |  time = " << timing(set) << endl;
 
     return 0;
 }
