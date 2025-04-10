@@ -3,6 +3,7 @@
 #include <set>
 #include <chrono>
 #include <cstdlib>
+#include <algorithm>
 using namespace std;
 
 vector<vector<int>> threeSum(vector<int>& nums) {
@@ -13,15 +14,8 @@ vector<vector<int>> threeSum(vector<int>& nums) {
         for (int j = i+1; j <nums.size(); j++) {
             for (int k = j+1; k <nums.size(); k++) {
                 if (nums.at(i) + nums.at(j) + nums.at(k) == 0) {
-                    int min = nums.at(i);
-                    if (nums.at(j) <= nums.at(i) && nums.at(j) <= nums.at(k)) min = nums.at(j);
-                    if (nums.at(k) <= nums.at(i) && nums.at(k) <= nums.at(j)) min = nums.at(k);
-                    int max = nums.at(i);
-                    if (nums.at(j) >= nums.at(i) && nums.at(j) >= nums.at(k)) max = nums.at(j);
-                    if (nums.at(k) >= nums.at(i) && nums.at(k) >= nums.at(j)) max = nums.at(k);
-                    int mid =  nums.at(i) + nums.at(j) + nums.at(k) - max - min;
-                    
-                    vector<int> triple = {min, mid, max};
+                    vector<int> triple = {nums.at(i), nums.at(j), nums.at(k)};
+                    sort(triple.begin(), triple.end());
                     unique.insert(triple);
                 }
             }
@@ -61,7 +55,11 @@ int main() {
     cout << "n = 800  |  time = " << timing(set) << endl;
     set = createSet(1600);
     cout << "n = 1600 |  time = " << timing(set) << endl;
-    
+    set = createSet(2400);
+    cout << "n = 2400 |  time = " << timing(set) << endl;
+    set = createSet(3200);
+    cout << "n = 3200 |  time = " << timing(set) << endl;
+
     // TEST purposes
     // auto result = threeSum(set);
     // for (auto triple : result) {
