@@ -42,8 +42,8 @@ vector<vector<int>> betterThreeSum(vector<int>& nums) {
                 resultVect.push_back({nums.at(i), nums.at(beg), nums.at(end)});
                 beg++;
                 end--;
-                while (beg < end && nums[beg] == nums[beg - 1]) beg++;
-                while (beg < end && nums[end] == nums[end + 1]) end--;
+                while (beg < end && nums.at(beg) == nums.at(beg - 1)) beg++;
+                while (beg < end && nums.at(end) == nums.at(end + 1)) end--;
             }
             else if (sum < 0) beg++;
             else if (sum > 0) end--;
@@ -93,7 +93,7 @@ int main() {
     cout << "n = 3200 |  time = " << timing(set, 'b') << endl;
 
     // TEST purposes
-    // auto result = threeSum(set);
+    // auto result = betterThreeSum(set);
     // for (auto triple : result) {
     //     for (auto one : triple) {
     //         cout << one << ", ";
